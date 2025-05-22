@@ -1,15 +1,11 @@
-import React from 'react';
+import { Chip } from '@mui/material';
 
 interface SkillTagProps {
-  skill: string;
+  label: string;
 }
 
-const SkillTag: React.FC<SkillTagProps> = ({ skill }) => {
-  return (
-    <span className="inline-block bg-blue-200 text-blue-800 px-2 py-1 rounded-full text-sm mr-2 mb-2">
-      {skill}
-    </span>
-  );
+export const SkillTag = ({ label }: SkillTagProps) => {
+  return <Chip label={label} color="primary" variant="outlined" sx={{ m: 0.5 }} />;
 };
 
 export default SkillTag;

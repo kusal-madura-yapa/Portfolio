@@ -1,16 +1,32 @@
-import React from 'react';
-import Link from 'next/link';
+'use client';
+import { AppBar, Toolbar, Typography, Box } from '@mui/material';
+import { Button } from '../common/Button';
 
-const Header = () => {
+export default function Header() {
   return (
-    <header className="w-full p-4 bg-gray-800 text-white flex justify-between items-center">
-      <h1 className="text-xl font-bold">My Portfolio</h1>
-      <nav>
-        <Link href="/">Home</Link>
-        <Link href="/portfolio" className="ml-4">Portfolio</Link>
-      </nav>
-    </header>
+    <AppBar position="static" color="transparent" elevation={0} sx={{ mb: 4 }}>
+      <Toolbar>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          Kusal Yapa
+        </Typography>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <Button href="#about" color="inherit">
+            About
+          </Button>
+          <Button href="#skills" color="inherit">
+            Skills
+          </Button>
+          <Button href="#experience" color="inherit">
+            Experience
+          </Button>
+          <Button href="#projects" color="inherit">
+            Projects
+          </Button>
+          <Button href="#contact" color="inherit">
+            Contact
+          </Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
-};
-
-export default Header;
+}

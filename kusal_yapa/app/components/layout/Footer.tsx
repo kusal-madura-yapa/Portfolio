@@ -1,11 +1,23 @@
-import React from 'react';
+'use client';
+import { Box, Typography, Link } from '@mui/material';
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="w-full p-4 bg-gray-800 text-white text-center">
-      <p>© 2025 My Portfolio. All rights reserved.</p>
-    </footer>
+    <Box sx={{ mt: 4, py: 2, textAlign: 'center', borderTop: '1px solid', borderColor: 'grey.300' }}>
+      <Typography variant="body2" color="text.secondary">
+        © {new Date().getFullYear()} Kusal Madura Yapa. All rights reserved.
+      </Typography>
+      <Box sx={{ mt: 1 }}>
+        <Link href="mailto:kusalmadurayapa@gmail.com" color="inherit" sx={{ mx: 1 }}>
+          Email
+        </Link>
+        <Link href="https://github.com/Kusal-madura-yapa" target="_blank" color="inherit" sx={{ mx: 1 }}>
+          GitHub
+        </Link>
+        <Link href="http://bit.ly/3KEuNjX" target="_blank" color="inherit" sx={{ mx: 1 }}>
+          LinkedIn
+        </Link>
+      </Box>
+    </Box>
   );
-};
-
-export default Footer;
+}

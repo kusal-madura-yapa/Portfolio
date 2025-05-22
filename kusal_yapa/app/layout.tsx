@@ -1,14 +1,16 @@
-import React from 'react';
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
+'use client';
+
+import { ThemeProvider } from '@mui/material/styles';
+import { Layout } from './components/layout/layout';
+import theme from './theme';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow container mx-auto p-4">{children}</main>
-        <Footer />
+      <body>
+        <ThemeProvider theme={theme}>
+          <Layout>{children}</Layout>
+        </ThemeProvider>
       </body>
     </html>
   );

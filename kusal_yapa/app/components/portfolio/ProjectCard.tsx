@@ -1,20 +1,24 @@
-import React from 'react';
+import { Card, CardContent, Typography } from '@mui/material';
 
 interface ProjectCardProps {
   title: string;
   description: string;
-  url: string;
+  date: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, url }) => {
+export const ProjectCard = ({ title, description, date }: ProjectCardProps) => {
   return (
-    <div className="border p-4 rounded shadow hover:shadow-lg transition cursor-pointer">
-      <h3 className="text-lg font-semibold">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-      <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline mt-2 block">
-        View Project
-      </a>
-    </div>
+    <Card sx={{ mb: 2 }}>
+      <CardContent>
+        {title && <Typography variant="h6" gutterBottom>{title}</Typography>}
+        {date && <Typography color="text.secondary" gutterBottom>{date}</Typography>}
+        {description && (
+          <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+            {description}
+          </Typography>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 
