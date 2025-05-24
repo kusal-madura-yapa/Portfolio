@@ -2,10 +2,18 @@ import { Chip } from '@mui/material';
 
 interface SkillTagProps {
   label: string;
+  sx?: object;
 }
 
-export const SkillTag = ({ label }: SkillTagProps) => {
-  return <Chip label={label} color="primary" variant="outlined" sx={{ m: 0.5 }} />;
-};
-
-export default SkillTag;
+export function SkillTag({ label, sx }: SkillTagProps) {
+  return (
+    <Chip
+      label={label}
+      sx={{
+        fontSize: '0.9rem',
+        fontWeight: 500,
+        ...sx,
+      }}
+    />
+  );
+}

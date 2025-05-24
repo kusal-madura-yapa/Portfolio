@@ -1,32 +1,56 @@
+// components/Header.tsx
 'use client';
-import { AppBar, Toolbar, Typography, Box } from '@mui/material';
-import { Button } from '../common/Button';
+import { Box, Button } from '@mui/material';
+
+const sections = [
+  'About Me',
+  'Skills',
+  'Education',
+  'Experience',
+  'Projects',
+  'Achievements',
+  'Volunteer Work',
+  'Contact',
+];
 
 export default function Header() {
   return (
-    <AppBar position="static" color="transparent" elevation={0} sx={{ mb: 4 }}>
-      <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Kusal Yapa
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button href="#about" color="inherit">
-            About
+    <Box
+      sx={{
+        position: 'sticky',
+        top: 0,
+        bgcolor: 'background.paper',
+        zIndex: 1100,
+        boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
+        py: 2,
+        px: { xs: 2, md: 4 },
+        animation: 'slideInDown 0.5s ease-out',
+        '@keyframes slideInDown': {
+          from: { transform: 'translateY(-100%)', opacity: 0 },
+          to: { transform: 'translateY(0)', opacity: 1 },
+        },
+      }}
+    >
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+        {sections.map((section) => (
+          <Button
+            key={section}
+            href={`#${section.toLowerCase().replace(' ', '-')}`}
+            sx={{
+              bgcolor: 'transparent',
+              color: 'text.primary',
+              '&:hover': { bgcolor: 'primary.main', color: 'white' },
+              animation: 'fadeInScale 0.7s ease-out',
+              '@keyframes fadeInScale': {
+                from: { transform: 'scale(0.95)', opacity: 0 },
+                to: { transform: 'scale(1)', opacity: 1 },
+              },
+            }}
+          >
+            {section}
           </Button>
-          <Button href="#skills" color="inherit">
-            Skills
-          </Button>
-          <Button href="#experience" color="inherit">
-            Experience
-          </Button>
-          <Button href="#projects" color="inherit">
-            Projects
-          </Button>
-          <Button href="#contact" color="inherit">
-            Contact
-          </Button>
-        </Box>
-      </Toolbar>
-    </AppBar>
+        ))}
+      </Box>
+    </Box>
   );
 }
