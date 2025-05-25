@@ -1,6 +1,7 @@
-'use client';
-import { Card, CardContent, Typography, List, ListItem, ListItemText } from '@mui/material';
-import { Box, SxProps, Theme } from '@mui/system';
+"use client";
+import { Card, CardContent, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import { Box, SxProps, Theme } from "@mui/system";
+import CircleIcon from "@mui/icons-material/Circle";
 
 interface ProjectCardProps {
   title?: string;
@@ -11,69 +12,115 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, description, date, sx }: ProjectCardProps) {
   const processDescription = (desc?: string) => {
-    if (!desc || typeof desc !== 'string') return [{ header: '', items: [desc || ''] }];
-    const lines = desc.split('\n').filter(line => line.trim());
-    const sections = [];
-    let currentSection: { header: string; items: string[] } = { header: '', items: [] };
+    if (!desc) return { isParagraph: true, content: "" };
 
-    lines.forEach(line => {
-      if (line.startsWith('- ') || line.match(/^\d+(st|nd|rd|th)?/)) {
-        if (currentSection.header && currentSection.items.length > 0) {
-          sections.push(currentSection);
-        }
-        currentSection = { header: line.replace('- ', '').trim(), items: [] };
-      } else if (currentSection.header) {
-        currentSection.items.push(line.trim());
-      }
-    });
-
-    if (currentSection.header || currentSection.items.length > 0) {
-      sections.push(currentSection);
+    const lines = desc.split("\n").filter((line) => line.trim());
+    if (lines.length === 1 || !lines.some((line) => line.includes("\n") || line.startsWith("-"))) {
+      // Treat as a single paragraph if no newlines or list markers
+      return { isParagraph: true, content: desc };
     }
 
-    return sections.length > 0 ? sections : [{ header: '', items: [desc] }];
+    // Treat as structured list with header and items
+    const header = lines[0];
+    const items = lines.slice(1).map((line) => line.trim().replace(/^-/, "").trim());
+    return { isParagraph: false, header, items };
   };
 
-  const sections = processDescription(description);
+  const processed = processDescription(description);
 
   return (
     <Card
       sx={{
-        p: 2,
-        transition: 'transform 0.3s, box-shadow 0.3s',
-        '&:hover': {
-          transform: 'translateY(-5px)',
-          boxShadow: '0 6px 20px rgba(0,0,0,0.15)',
+        backgroundColor: "background.paper", // #1e1e1e
+        borderRadius: "12px", // Slightly larger for modern look
+        border: "1px solid #333333", // Match theme's border
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        "&:hover": {
+          transform: "scale(1.02)", // Subtle scale
+          boxShadow: "0 6px 12px rgba(98, 0, 234, 0.2)", // Purple shadow
+          borderColor: "#7b3fe4", // Purple border on hover
         },
         ...sx,
       }}
     >
-      <CardContent>
+      <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
         {title && (
-          <Typography variant="h5" gutterBottom>
+          <Typography
+            variant="h6"
+            gutterBottom
+            sx={{
+              background: "linear-gradient(45deg, #7b3fe4 30%, #ce93d8 90%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontWeight: "bold",
+            }}
+          >
             {title}
           </Typography>
         )}
-        {sections.length > 0 && (
+
+        {processed.isParagraph ? (
+          <Typography
+            variant="body1"
+            sx={{
+              color: "text.primary",
+              lineHeight: 1.6,
+              fontSize: { xs: "0.9rem", sm: "1rem" },
+            }}
+          >
+            {processed.content}
+          </Typography>
+        ) : (
           <Box>
-            {sections.map((section, index) => (
-              <Box key={index} sx={{ mb: 2 }}>
-                <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>
-                  {section.header}
-                </Typography>
-                <List sx={{ pl: 2, color: 'text.secondary' }}>
-                  {section.items.map((item, itemIndex) => (
-                    <ListItem key={itemIndex} disablePadding sx={{ display: 'list-item', mb: 0.5 }}>
-                      <ListItemText primary={item} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Box>
-            ))}
+            {processed.header && (
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  color: "text.primary",
+                  fontWeight: "medium",
+                  mb: 1,
+                }}
+              >
+                {processed.header}
+              </Typography>
+            )}
+            {processed.items && processed.items.length > 0 && (
+              <List dense sx={{ pl: 1 }}>
+                {processed.items.map((item, idx) => (
+                  <ListItem key={idx} disablePadding sx={{ mb: 0.5 }}>
+                    <ListItemIcon sx={{ minWidth: "24px" }}>
+                      <CircleIcon sx={{ fontSize: "8px", color: "#bb86fc" }} />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "text.primary",
+                            fontSize: { xs: "0.85rem", sm: "0.9rem" },
+                          }}
+                        >
+                          {item}
+                        </Typography>
+                      }
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            )}
           </Box>
         )}
+
         {date && (
-          <Typography variant="caption" color="text.secondary">
+          <Typography
+            variant="caption"
+            sx={{
+              color: "text.secondary",
+              display: "block",
+              mt: 1,
+              fontSize: { xs: "0.75rem", sm: "0.8rem" },
+            }}
+          >
             {date}
           </Typography>
         )}
