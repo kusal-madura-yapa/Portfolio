@@ -297,7 +297,9 @@ export default function Page() {
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
             <ProjectCard
               title="Trainee Software Engineer"
-              description="99X Technology Limited, Colombo, Sri Lanka (Jul 2023 - Jul 2024)\n- Optimized AI prompts for enhanced system accuracy\n- Served as Scrum Master, facilitating agile processes\n- Contributed to OPTIMAXER AI (NBQSA Merit 2023)\n- Developed: Employee Upskilling App, AI Web Solutions, HR Bot, AI Research Hub"
+              description="99X Technology Limited, Colombo, Sri Lanka (Jul 2023 - Jul 2024)
+              Optimized AI prompts for enhanced system accuracy\n- Served as Scrum Master, facilitating agile processes
+              Contributed to OPTIMAXER AI (NBQSA Merit 2023)\n- Developed: Employee Upskilling App, AI Web Solutions, HR Bot, AI Research Hub"
               sx={{
                 p: { xs: 2, sm: 3 },
                 maxWidth: { xs: '100%', sm: '600px' },
@@ -331,7 +333,8 @@ export default function Page() {
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
             <ProjectCard
               title="Adaptive Gamification Model"
-              description="Final Year Project (2024-2025)\n- Implemented a DQN-based gamification system to personalize programming education\n- Featured dynamic difficulty adjustment, feedback, and leaderboards to boost engagement and retention for Gen Z learners"
+              description="Final Year Project (2024-2025)\n- Implemented a DQN-based gamification system to personalize programming education
+              Featured dynamic difficulty adjustment, feedback, and leaderboards to boost engagement and retention for Gen Z learners"
               sx={{
                 p: { xs: 2, sm: 3 },
                 maxWidth: { xs: '100%', sm: '600px' },
@@ -372,7 +375,7 @@ export default function Page() {
           >
             <ProjectCard
               title="Achievements"
-              description="2023\n- NBQSA Merit for OPTIMAXER AI\n2021-2022\n- 1st Runner Up, OpenHack 2.0\n- Finalist, RevolUX 2.0\n- IEEEXtreme 16.0\n- Hacktoberfest 2022"
+              description="2023 NBQSA Merit for OPTIMAXER AI\n2021-2022  1st Runner Up, OpenHack 2.0 Finalist, RevolUX 2.0 IEEEXtreme 16.0 Hacktoberfest 2022"
               sx={{
                 p: { xs: 2, sm: 3 },
                 maxWidth: { xs: '100%', sm: '600px' },
@@ -384,7 +387,7 @@ export default function Page() {
             />
             <ProjectCard
               title="Volunteer Work"
-              description="2023-2024 Music Innovative Member, Xternship Program (IIT)\n2022-2023 STEM UP Foundation Supporter"
+              description="2023-2024 Music Innovative Member, Xternship Program (IIT) 2022-2023 STEM UP Foundation Supporter"
               sx={{
                 p: { xs: 2, sm: 3 },
                 maxWidth: { xs: '100%', sm: '600px' },
