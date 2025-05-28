@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="stylesheet" href="/styles/global.css" />
       </head>
       <body>
-        <Container>{children}</Container>
+       {children}
       </body>
     </html>
   );

@@ -7,8 +7,7 @@ const sections = [
   "Education",
   "Experience",
   "Projects",
-  "Achievements and Volunteer Work",
-
+  "Achievements",
 ];
 
 export default function Header() {

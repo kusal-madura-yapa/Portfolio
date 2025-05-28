@@ -9,15 +9,17 @@ import {
   Divider,
   IconButton,
   useMediaQuery,
+  css,
 } from '@mui/material';
 import { ProjectCard } from './components/portfolio/ProjectCard';
 import { SkillTag } from './components/portfolio/SkillTag';
 import dynamic from 'next/dynamic';
 import EducationSection from './components/portfolio/EducationSection';
-import Footer from './components/layout/Footer';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+
 
 const AnimatedHero = dynamic(() => import('./components/portfolio/AnimatedHero'), {
   ssr: false,
@@ -28,33 +30,37 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#7b3fe4', // Changed to a richer purple
-      light: '#b388ff',
+      main: '#00bcd4', // Cyan for a modern, vibrant look
+      light: '#4dd0e1',
     },
     background: {
-      default: '#0a0a0a', // Darker background
-      paper: '#1c1c1c',
+      default: '#121212', // Softer dark gray for better readability
+      paper: '#1e1e1e', // Slightly lighter for cards
     },
     text: {
-      primary: '#ffffff',
-      secondary: '#cccccc',
+      primary: '#e0e0e0', // Softer white for readability
+      secondary: '#b0b0b0',
     },
   },
   components: {
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: '#ffffff',
+          color: '#e0e0e0',
+          transition: 'color 0.3s ease', // Smooth color transition
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          background: 'linear-gradient(45deg, #7b3fe4 30%, #b388ff 90%)',
+          background: 'linear-gradient(45deg, #00bcd4 30%, #4dd0e1 90%)',
           color: '#ffffff',
+          transition: 'transform 0.2s ease, background 0.3s ease',
           '&:hover': {
-            background: 'linear-gradient(45deg, #b388ff 30%, #7b3fe4 90%)',
+            background: 'linear-gradient(45deg, #4dd0e1 30%, #00bcd4 90%)',
+            transform: 'scale(1.05)', // Slight scale on hover
+            boxShadow: '0 0 15px rgba(0, 188, 212, 0.5)', // Glow effect
           },
         },
       },
@@ -62,12 +68,22 @@ const darkTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: '#1c1c1c',
-          border: '1px solid #2a2a2a',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
+          background: 'linear-gradient(145deg, #1e1e1e 0%, #252525 100%)', // Subtle gradient
+          border: '1px solid #333',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+          transition: 'transform 0.2s ease, box-shadow 0.3s ease',
           '&:hover': {
-            boxShadow: '0 6px 12px rgba(123, 63, 228, 0.2)',
+            transform: 'translateY(-4px)', // Lift effect on hover
+            boxShadow: '0 8px 16px rgba(0, 188, 212, 0.4)', // Cyan glow
           },
+        },
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          borderColor: '#444', // Softer divider color
+          transition: 'border-color 0.3s ease',
         },
       },
     },
@@ -78,23 +94,24 @@ const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#0288d1', // Blue for light theme
+      main: '#0288d1',
       light: '#4fc3f7',
     },
     background: {
-      default: '#e3f2fd', // Light blue background
+      default: '#e3f2fd',
       paper: '#ffffff',
     },
     text: {
-      primary: '#000000',
-      secondary: '#444444',
+      primary: '#212121', // Slightly softer black for readability
+      secondary: '#616161',
     },
   },
   components: {
     MuiTypography: {
       styleOverrides: {
         root: {
-          color: '#000000',
+          color: '#212121',
+          transition: 'color 0.3s ease',
         },
       },
     },
@@ -103,8 +120,11 @@ const lightTheme = createTheme({
         root: {
           background: 'linear-gradient(45deg, #0288d1 30%, #4fc3f7 90%)',
           color: '#ffffff',
+          transition: 'transform 0.2s ease, background 0.3s ease',
           '&:hover': {
             background: 'linear-gradient(45deg, #4fc3f7 30%, #0288d1 90%)',
+            transform: 'scale(1.05)',
+            boxShadow: '0 0 15px rgba(2, 136, 209, 0.5)', // Blue glow
           },
         },
       },
@@ -112,12 +132,22 @@ const lightTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: '#ffffff',
-          border: '1px solid #d4e6f1',
+          background: 'linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%)', // Subtle gradient
+          border: '1px solid #e0e0e0',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          transition: 'transform 0.2s ease, box-shadow 0.3s ease',
           '&:hover': {
-            boxShadow: '0 6px 12px rgba(2, 136, 209, 0.2)',
+            transform: 'translateY(-4px)',
+            boxShadow: '0 8px 16px rgba(2, 136, 209, 0.3)', // Blue glow
           },
+        },
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          borderColor: '#d4e6f1',
+          transition: 'border-color 0.3s ease',
         },
       },
     },
@@ -126,13 +156,11 @@ const lightTheme = createTheme({
 
 export default function Page() {
   const [isMounted, setIsMounted] = useState(false);
-  // Detect system theme preference
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [themeMode, setThemeMode] = useState(prefersDarkMode ? 'dark' : 'light');
 
   useEffect(() => {
     setIsMounted(true);
-    // Update themeMode when system theme changes
     setThemeMode(prefersDarkMode ? 'dark' : 'light');
   }, [prefersDarkMode]);
 
@@ -145,6 +173,9 @@ export default function Page() {
   return (
     <ThemeProvider theme={currentTheme}>
       <Header />
+      
+      
+     
       <Container
         sx={{
           py: { xs: 3, md: 4 },
@@ -152,29 +183,45 @@ export default function Page() {
           maxWidth: '1400px',
           backgroundColor: 'background.default',
           minHeight: '100vh',
+          transition: 'background-color 0.3s ease', // Smooth theme transition
         }}
       >
-        {/* Theme Toggle Button */}
-        <Box sx={{ position: 'absolute', top: 16, right: 16 }}>
+        {/* Theme Toggle Button with Animation */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 16,
+            right: 16,
+            '&:hover': {
+              transform: 'rotate(15deg)', // Rotate on hover
+            },
+            transition: 'transform 0.2s ease',
+          }}
+        >
           <IconButton onClick={toggleTheme} color="inherit">
             {themeMode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </Box>
 
-        {/* Hero Section */}
-        {isMounted && <AnimatedHero />}
+        {/* Animated Hero with Fade-In */}
+        {isMounted && (
+          <Box className="fadeInUp">
+            <AnimatedHero />
+          </Box>
+        )}
 
-        {/* About */}
+        {/* About Section */}
         <Box id="about" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
           <Typography
             variant="h3"
             gutterBottom
             sx={{
+              animation: 'fadeInUp 1s ease-in-out',
               mb: 2,
               textAlign: 'center',
               background: `linear-gradient(45deg, ${
-                themeMode === 'dark' ? '#7b3fe4' : '#0288d1'
-              } 30%, ${themeMode === 'dark' ? '#b388ff' : '#4fc3f7'} 90%)`,
+                themeMode === 'dark' ? '#00bcd4' : '#0288d1'
+              } 30%, ${themeMode === 'dark' ? '#4dd0e1' : '#4fc3f7'} 90%)`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontSize: { xs: '2rem', sm: '2.5rem' },
@@ -191,22 +238,24 @@ export default function Page() {
               backgroundColor: 'background.paper',
               color: 'text.primary',
               borderRadius: '12px',
+              animation: 'fadeInUp 1s ease-in-out',
             }}
           />
-          <Divider sx={{ my: 2, borderColor: themeMode === 'dark' ? '#2a2a2a' : '#d4e6f1' }} />
+          <Divider sx={{ my: 2 }} />
         </Box>
 
-        {/* Skills */}
+        {/* Skills Section */}
         <Box id="skills" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
           <Typography
             variant="h3"
             gutterBottom
             sx={{
+              animation: 'fadeInUp 1s ease-in-out',
               mb: 2,
               textAlign: 'center',
               background: `linear-gradient(45deg, ${
-                themeMode === 'dark' ? '#7b3fe4' : '#0288d1'
-              } 30%, ${themeMode === 'dark' ? '#b388ff' : '#4fc3f7'} 90%)`,
+                themeMode === 'dark' ? '#00bcd4' : '#0288d1'
+              } 30%, ${themeMode === 'dark' ? '#4dd0e1' : '#4fc3f7'} 90%)`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontSize: { xs: '2rem', sm: '2.5rem' },
@@ -260,33 +309,37 @@ export default function Page() {
                   py: 0.5,
                   borderRadius: '16px',
                   fontSize: { xs: '0.8rem', sm: '0.9rem' },
+                  transition: 'transform 0.2s ease, box-shadow 0.3s ease',
                   '&:hover': {
                     bgcolor: 'primary.light',
-                    boxShadow: `0 2px 4px rgba(${
-                      themeMode === 'dark' ? '123, 63, 228' : '2, 136, 209'
-                    }, 0.2)`,
+                    transform: 'scale(1.1)', // Scale on hover
+                    boxShadow: `0 4px 8px rgba(${
+                      themeMode === 'dark' ? '0, 188, 212' : '2, 136, 209'
+                    }, 0.3)`,
                   },
+                  animation: 'float 2s infinite', // Apply float animation directly
                 }}
               />
             ))}
           </Box>
-          <Divider sx={{ my: 2, borderColor: themeMode === 'dark' ? '#2a2a2a' : '#d4e6f1' }} />
+          <Divider sx={{ my: 2 }} />
         </Box>
 
-        {/* Education */}
+        {/* Education Section */}
         <EducationSection />
 
-        {/* Experience */}
+        {/* Experience Section */}
         <Box id="experience" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
           <Typography
             variant="h3"
             gutterBottom
             sx={{
+              animation: 'fadeInUp 1s ease-in-out',
               mb: 2,
               textAlign: 'center',
               background: `linear-gradient(45deg, ${
-                themeMode === 'dark' ? '#7b3fe4' : '#0288d1'
-              } 30%, ${themeMode === 'dark' ? '#b388ff' : '#4fc3f7'} 90%)`,
+                themeMode === 'dark' ? '#00bcd4' : '#0288d1'
+              } 30%, ${themeMode === 'dark' ? '#4dd0e1' : '#4fc3f7'} 90%)`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontSize: { xs: '2rem', sm: '2.5rem' },
@@ -297,32 +350,38 @@ export default function Page() {
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
             <ProjectCard
               title="Trainee Software Engineer"
-              description="99X Technology Limited, Colombo, Sri Lanka (Jul 2023 - Jul 2024)
-              Optimized AI prompts for enhanced system accuracy\n- Served as Scrum Master, facilitating agile processes
-              Contributed to OPTIMAXER AI (NBQSA Merit 2023)\n- Developed: Employee Upskilling App, AI Web Solutions, HR Bot, AI Research Hub"
+              description={
+                "99X Technology Limited, Colombo, Sri Lanka (Jul 2023 - Jul 2024)\n" +
+                "- Optimized AI prompts for enhanced system accuracy\n" +
+                "- Served as Scrum Master, facilitating agile processes\n" +
+                "- Contributed to OPTIMAXER AI (NBQSA Merit 2023)\n" +
+                "- Developed: Employee Upskilling App, AI Web Solutions, HR Bot, AI Research Hub"
+              }
               sx={{
                 p: { xs: 2, sm: 3 },
                 maxWidth: { xs: '100%', sm: '600px' },
                 backgroundColor: 'background.paper',
                 color: 'text.primary',
                 borderRadius: '12px',
+                animation: 'fadeInUp 1s ease-in-out',
               }}
             />
           </Box>
-          <Divider sx={{ my: 2, borderColor: themeMode === 'dark' ? '#2a2a2a' : '#d4e6f1' }} />
+          <Divider sx={{ my: 2 }} />
         </Box>
 
-        {/* Projects */}
+        {/* Projects Section */}
         <Box id="projects" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
           <Typography
             variant="h3"
             gutterBottom
             sx={{
+              animation: 'fadeInUp 1s ease-in-out',
               mb: 2,
               textAlign: 'center',
               background: `linear-gradient(45deg, ${
-                themeMode === 'dark' ? '#7b3fe4' : '#0288d1'
-              } 30%, ${themeMode === 'dark' ? '#b388ff' : '#4fc3f7'} 90%)`,
+                themeMode === 'dark' ? '#00bcd4' : '#0288d1'
+              } 30%, ${themeMode === 'dark' ? '#4dd0e1' : '#4fc3f7'} 90%)`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontSize: { xs: '2rem', sm: '2.5rem' },
@@ -333,31 +392,36 @@ export default function Page() {
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
             <ProjectCard
               title="Adaptive Gamification Model"
-              description="Final Year Project (2024-2025)\n- Implemented a DQN-based gamification system to personalize programming education
-              Featured dynamic difficulty adjustment, feedback, and leaderboards to boost engagement and retention for Gen Z learners"
+              description={
+                "Final Year Project (2024-2025)\n" +
+                "- Implemented a DQN-based gamification system to personalize programming education\n" +
+                "- Featured dynamic difficulty adjustment, feedback, and leaderboards to boost engagement and retention for Gen Z learners"
+              }
               sx={{
                 p: { xs: 2, sm: 3 },
                 maxWidth: { xs: '100%', sm: '600px' },
                 backgroundColor: 'background.paper',
                 color: 'text.primary',
                 borderRadius: '12px',
+                animation: 'fadeInUp 1s ease-in-out',
               }}
             />
           </Box>
-          <Divider sx={{ my: 2, borderColor: themeMode === 'dark' ? '#2a2a2a' : '#d4e6f1' }} />
+          <Divider sx={{ my: 2 }} />
         </Box>
 
-        {/* Achievements & Volunteer Work */}
+        {/* Achievements & Volunteer Work Section */}
         <Box id="achievements" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
           <Typography
             variant="h3"
             gutterBottom
             sx={{
+              animation: 'fadeInUp 1s ease-in-out',
               mb: 2,
               textAlign: 'center',
               background: `linear-gradient(45deg, ${
-                themeMode === 'dark' ? '#7b3fe4' : '#0288d1'
-              } 30%, ${themeMode === 'dark' ? '#b388ff' : '#4fc3f7'} 90%)`,
+                themeMode === 'dark' ? '#00bcd4' : '#0288d1'
+              } 30%, ${themeMode === 'dark' ? '#4dd0e1' : '#4fc3f7'} 90%)`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               fontSize: { xs: '2rem', sm: '2.5rem' },
@@ -375,7 +439,15 @@ export default function Page() {
           >
             <ProjectCard
               title="Achievements"
-              description="2023 NBQSA Merit for OPTIMAXER AI\n2021-2022  1st Runner Up, OpenHack 2.0 Finalist, RevolUX 2.0 IEEEXtreme 16.0 Hacktoberfest 2022"
+              description={
+                "2023\n" +
+                "- NBQSA Merit for OPTIMAXER AI\n" +
+                "2021-2022\n" +
+                "- 1st Runner Up, OpenHack 2.0\n" +
+                "- Finalist, RevolUX 2.0\n" +
+                "- IEEEXtreme 16.0\n" +
+                "- Hacktoberfest 2022"
+              }
               sx={{
                 p: { xs: 2, sm: 3 },
                 maxWidth: { xs: '100%', sm: '600px' },
@@ -383,11 +455,17 @@ export default function Page() {
                 color: 'text.primary',
                 borderRadius: '12px',
                 flex: { md: '1 1 45%' },
+                animation: 'fadeInUp 1s ease-in-out',
               }}
             />
             <ProjectCard
               title="Volunteer Work"
-              description="2023-2024 Music Innovative Member, Xternship Program (IIT) 2022-2023 STEM UP Foundation Supporter"
+              description={
+                "2023-2024\n" +
+                "- Music Innovative Member, Xternship Program (IIT)\n" +
+                "2022-2023\n" +
+                "- STEM UP Foundation Supporter"
+              }
               sx={{
                 p: { xs: 2, sm: 3 },
                 maxWidth: { xs: '100%', sm: '600px' },
@@ -395,14 +473,16 @@ export default function Page() {
                 color: 'text.primary',
                 borderRadius: '12px',
                 flex: { md: '1 1 45%' },
+                animation: 'fadeInUp 1s ease-in-out',
               }}
             />
           </Box>
-          <Divider sx={{ my: 2, borderColor: themeMode === 'dark' ? '#2a2a2a' : '#d4e6f1' }} />
+          <Divider sx={{ my: 2 }} />
         </Box>
 
-        <Footer themeMode={'dark'} />
+       
       </Container>
+      <Footer themeMode={'light'} />
     </ThemeProvider>
   );
 }
