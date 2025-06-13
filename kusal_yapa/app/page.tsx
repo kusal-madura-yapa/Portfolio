@@ -19,6 +19,8 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import AWSProjects from './components/portfolio/AWSProjects';
+import MLProjects from './components/portfolio/MLProjects';
 
 
 const AnimatedHero = dynamic(() => import('./components/portfolio/AnimatedHero'), {
@@ -387,7 +389,10 @@ export default function Page() {
               fontSize: { xs: '2rem', sm: '2.5rem' },
             }}
           >
-            Projects
+            {/* ML Projects Section */}
+            <Box id="ml-projects" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
+  <MLProjects />
+</Box>
           </Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
             <ProjectCard
@@ -407,7 +412,11 @@ export default function Page() {
               }}
             />
           </Box>
-          <Divider sx={{ my: 2 }} />
+          
+        </Box>
+        {/* AWS Projects Section */}
+        <Box id="aws-projects" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
+          <AWSProjects />
         </Box>
 
         {/* Achievements & Volunteer Work Section */}
@@ -479,6 +488,7 @@ export default function Page() {
           </Box>
           <Divider sx={{ my: 2 }} />
         </Box>
+        
 
        
       </Container>
