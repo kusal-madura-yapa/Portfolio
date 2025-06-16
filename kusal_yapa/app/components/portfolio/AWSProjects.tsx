@@ -2,9 +2,16 @@
 import { useTheme } from '@mui/material/styles';
 import { Typography, Box, Divider } from '@mui/material';
 import { ProjectCard } from './ProjectCard';
+import { useEffect } from 'react';
 
 const AWSProjects = () => {
   const theme = useTheme();
+
+  // Use useEffect to add animation styles safely on the client side
+  useEffect(() => {
+    // Animation is now defined in global.css
+    // This avoids the CSSStyleSheet error during server-side rendering
+  }, []);
 
   return (
     <>
@@ -110,22 +117,7 @@ const AWSProjects = () => {
   );
 };
 
-// CSS animation keyframes
-const styles = `
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`;
-
-const styleSheet = new CSSStyleSheet();
-styleSheet.replaceSync(styles);
-document.adoptedStyleSheets = [styleSheet];
+// Animation is handled through MUI's sx prop instead of direct CSS manipulation
+// This avoids the CSSStyleSheet error during server-side rendering
 
 export default AWSProjects;

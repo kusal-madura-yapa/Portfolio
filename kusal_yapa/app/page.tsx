@@ -179,13 +179,15 @@ export default function Page() {
       
      
       <Container
+        maxWidth={false}
+        disableGutters
         sx={{
           py: { xs: 3, md: 4 },
           px: { xs: 2, sm: 3, md: 4 },
-          maxWidth: '1400px',
           backgroundColor: 'background.default',
           minHeight: '100vh',
           transition: 'background-color 0.3s ease', // Smooth theme transition
+          overflowX: 'hidden', // Prevent horizontal scrolling
         }}
       >
         {/* Theme Toggle Button with Animation */}
@@ -389,29 +391,14 @@ export default function Page() {
               fontSize: { xs: '2rem', sm: '2.5rem' },
             }}
           >
-            {/* ML Projects Section */}
-            <Box id="ml-projects" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
-  <MLProjects />
-</Box>
+            Projects
           </Typography>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center' }}>
-            <ProjectCard
-              title="Adaptive Gamification Model"
-              description={
-                "Final Year Project (2024-2025)\n" +
-                "- Implemented a DQN-based gamification system to personalize programming education\n" +
-                "- Featured dynamic difficulty adjustment, feedback, and leaderboards to boost engagement and retention for Gen Z learners"
-              }
-              sx={{
-                p: { xs: 2, sm: 3 },
-                maxWidth: { xs: '100%', sm: '600px' },
-                backgroundColor: 'background.paper',
-                color: 'text.primary',
-                borderRadius: '12px',
-                animation: 'fadeInUp 1s ease-in-out',
-              }}
-            />
+          
+          {/* ML Projects Section */}
+          <Box id="ml-projects" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
+            <MLProjects />
           </Box>
+          {/* Projects are now in their respective components */}
           
         </Box>
         {/* AWS Projects Section */}

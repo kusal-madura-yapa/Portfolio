@@ -16,6 +16,7 @@ export default function Header() {
       sx={{
         position: "sticky",
         top: 0,
+        width: "100%",
         bgcolor: "background.paper",
         zIndex: 1100,
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
@@ -26,6 +27,8 @@ export default function Header() {
           from: { transform: "translateY(-100%)", opacity: 0 },
           to: { transform: "translateY(0)", opacity: 1 },
         },
+        backdropFilter: "blur(8px)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
       }}
     >
       <Box sx={{ display: "flex", justifyContent: "center", gap: 2, flexWrap: "wrap" }}>

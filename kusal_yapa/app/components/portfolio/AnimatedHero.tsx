@@ -13,18 +13,18 @@ export default function AnimatedHero() {
     <Box
       sx={{
         textAlign: "center",
-        py: { xs: 4, sm: 5, md: 6 }, // Reduced padding
-        mb: { xs: 3, md: 4 }, // Reduced margin
+        py: { xs: 6, sm: 8, md: 10 }, // Increased padding for more height
+        mb: { xs: 4, md: 5 }, // Increased margin
         position: "relative",
-        borderRadius: "8px", // Match ProjectCard
+        width: "100%", // Full width
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: { xs: "150px", sm: "200px", md: "250px" }, // Smaller container
-        backgroundColor: "background.paper", // #1e1e1e for theme consistency
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)", // Match ProjectCard
+        minHeight: { xs: "300px", sm: "400px", md: "500px" }, // Taller container
+        backgroundColor: "background.paper",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
       }}
     >
       <Box
