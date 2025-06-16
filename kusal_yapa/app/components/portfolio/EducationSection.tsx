@@ -31,24 +31,9 @@ export default function EducationSection() {
       >
         <ProjectCard
           title="University of Westminster - BEng (Hons) Software Engineering"
-          description={
-            "2021 - 2025\n" +
-            "Final Year:\n" +
-            "- Mobile Native Application Development\n" +
-            "- Formal Methods\n" +
-            "- Concurrent Programming (Java)\n" +
-            "- Computer Science Final Project\n" +
-            "- Cyber Security\n" +
-            "\n" +
-            "3rd Year:\n" +
-            "- Industrial Placement at 99X Technology Limited\n" +
-            "\n" +
-            "2nd Year:\n" +
-            "- Average Marks - 71.6%\n" +
-            "\n" +
-            "1st Year:\n" +
-            "- Average Marks - 85.1%"
-          }
+          description="Pursuing a 2nd Upper Bachelor’s degree in Software Engineering , focusing on software development, algorithms, data structures, and machine learning."
+          date='Informatics Institute of Technology (IIT), Sri Lanka (2021–2025)'
+          
           sx={{
             p: { xs: 2.5, sm: 3.5 },
             flex: '1 1 300px',
