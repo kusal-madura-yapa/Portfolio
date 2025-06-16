@@ -1,18 +1,48 @@
 import { Email, Phone, LinkedIn, GitHub } from "@mui/icons-material";
 import { Box, Typography, Button } from "@mui/material";
 import { useState, useEffect } from "react";
+import { createAnimation, fadeInUp, pulseGlow } from "../../styles/animations";
+import { gradientText } from "../../styles/commonStyles";
+import { FooterProps, ContactLink } from "../../types";
 
-type FooterProps = {
-  themeMode: "light" | "dark";
-};
+// Using the imported FooterProps interface from types
+
+import { useTheme } from '@mui/material/styles';
 
 export default function Footer({ themeMode }: FooterProps) {
     const [year, setYear] = useState("2025");
-  
+    const theme = useTheme();
     useEffect(() => {
       setYear(new Date().getFullYear().toString());
     }, []);
-  
+    const contactLinks: ContactLink[] = [
+      {
+        icon: <Email />,
+        label: "Email Kusal",
+        href: "mailto:kusalmadurayapa@gmail.com",
+        text: "kusalmadurayapa@gmail.com",
+      },
+      {
+        icon: <Phone />,
+        label: "Call Kusal",
+        href: "tel:+94771196802",
+        text: "+94 771 196 802",
+      },
+      {
+        icon: <LinkedIn />,
+        label: "LinkedIn Profile",
+        href: "http://bit.ly/3KEuNjX",
+        text: "LinkedIn",
+        external: true,
+      },
+      {
+        icon: <GitHub />,
+        label: "GitHub Profile",
+        href: "https://github.com/Kusal-madura-yapa",
+        text: "GitHub",
+        external: true,
+      },
+    ];
     return (
       <Box
         sx={{
@@ -27,12 +57,9 @@ export default function Footer({ themeMode }: FooterProps) {
           variant="h3"
           gutterBottom
           sx={{
+            ...gradientText(theme),
+            animation: createAnimation(fadeInUp, '1s'),
             mb: 4,
-            background: `linear-gradient(45deg, ${
-              themeMode === "dark" ? "#7b3fe4" : "#0288d1"
-            } 30%, ${themeMode === "dark" ? "#b388ff" : "#4fc3f7"} 90%)`,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
           }}
         >
           Contact Me
@@ -50,34 +77,7 @@ export default function Footer({ themeMode }: FooterProps) {
             mx: "auto",
           }}
         >
-          {[
-            {
-              icon: <Email />,
-              label: "Email Kusal",
-              href: "mailto:kusalmadurayapa@gmail.com",
-              text: "kusalmadurayapa@gmail.com",
-            },
-            {
-              icon: <Phone />,
-              label: "Call Kusal",
-              href: "tel:+94771196802",
-              text: "+94 771 196 802",
-            },
-            {
-              icon: <LinkedIn />,
-              label: "LinkedIn Profile",
-              href: "http://bit.ly/3KEuNjX",
-              text: "LinkedIn",
-              external: true,
-            },
-            {
-              icon: <GitHub />,
-              label: "GitHub Profile",
-              href: "https://github.com/Kusal-madura-yapa",
-              text: "GitHub",
-              external: true,
-            },
-          ].map(({ icon, label, href, text, external }) => (
+          {contactLinks.map(({ icon, label, href, text, external }) => (
             <Button
               key={label}
               startIcon={icon}
@@ -86,25 +86,18 @@ export default function Footer({ themeMode }: FooterProps) {
               target={external ? "_blank" : undefined}
               rel={external ? "noopener noreferrer" : undefined}
               sx={{
-                bgcolor: "transparent",
-                color: "text.primary",
-                background: `linear-gradient(45deg, ${
-                  themeMode === "dark" ? "#7b3fe4" : "#0288d1"
-                } 30%, ${themeMode === "dark" ? "#b388ff" : "#4fc3f7"} 90%)`,
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                ...gradientText(theme),
                 width: { xs: "80%", sm: "auto" },
                 px: { xs: 1.5, sm: 2 },
                 py: 0.5,
                 borderRadius: "20px",
-                "&:hover": {
-                  bgcolor: "primary.main",
-                  color: "text.primary",
-                  WebkitBackgroundClip: "unset",
-                  WebkitTextFillColor: "inherit",
-                  boxShadow: `0 2px 4px rgba(${
-                    themeMode === "dark" ? "123, 63, 228" : "2, 136, 209"
-                  }, 0.2)`,
+                transition: 'all 0.2s',
+                '&:hover': {
+                  color: 'text.primary',
+                  boxShadow: `0 2px 4px rgba(${theme.palette.mode === 'dark' ? '123, 63, 228' : '2, 136, 209'}, 0.2)`,
+                  background: 'none',
+                  WebkitBackgroundClip: 'unset',
+                  WebkitTextFillColor: 'inherit',
                 },
               }}
             >
@@ -119,39 +112,18 @@ export default function Footer({ themeMode }: FooterProps) {
             aria-label="Download CV"
             sx={{
               mt: { xs: 1.5, sm: 0 },
-              bgcolor: "transparent",
-              background: `linear-gradient(45deg, ${
-                themeMode === "dark" ? "#7b3fe4" : "#0288d1"
-              } 30%, ${themeMode === "dark" ? "#b388ff" : "#4fc3f7"} 90%)`,
-              color: "text.primary",
+              ...gradientText(theme),
               width: { xs: "80%", sm: "auto" },
               px: { xs: 1.5, sm: 2 },
               py: 0.5,
               borderRadius: "20px",
-              animation: "pulseGlow 1.5s infinite",
-              "@keyframes pulseGlow": {
-                "0%": {
-                  boxShadow: `0 0 0 0 rgba(${
-                    themeMode === "dark" ? "123, 63, 228" : "2, 136, 209"
-                  }, 0.4)`,
-                },
-                "50%": {
-                  boxShadow: `0 0 10px 5px rgba(${
-                    themeMode === "dark" ? "123, 63, 228" : "2, 136, 209"
-                  }, 0)`,
-                },
-                "100%": {
-                  boxShadow: `0 0 0 0 rgba(${
-                    themeMode === "dark" ? "123, 63, 228" : "2, 136, 209"
-                  }, 0.4)`,
-                },
-              },
-              "&:hover": {
-                bgcolor: "primary.light",
-                color: "text.primary",
-                boxShadow: `0 2px 4px rgba(${
-                  themeMode === "dark" ? "123, 63, 228" : "2, 136, 209"
-                }, 0.2)`,
+              animation: createAnimation(pulseGlow, '1.5s', 'ease-in-out', '0s', 'infinite'),
+              '&:hover': {
+                color: 'text.primary',
+                boxShadow: `0 2px 4px rgba(${theme.palette.mode === 'dark' ? '123, 63, 228' : '2, 136, 209'}, 0.2)`,
+                background: 'none',
+                WebkitBackgroundClip: 'unset',
+                WebkitTextFillColor: 'inherit',
               },
             }}
           >
@@ -164,12 +136,7 @@ export default function Footer({ themeMode }: FooterProps) {
           sx={{
             mt: 3,
             display: "block",
-            color: "text.secondary",
-            background: `linear-gradient(45deg, ${
-              themeMode === "dark" ? "#7b3fe4" : "#0288d1"
-            } 30%, ${themeMode === "dark" ? "#b388ff" : "#4fc3f7"} 90%)`,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
+            ...gradientText(theme),
           }}
         >
           © {year} Kusal Madura Yapa. All rights reserved.

@@ -1,28 +1,27 @@
-"use client";
-import { useEffect, useState } from "react";
-import { Box, Avatar, Typography } from "@mui/material";
+'use client';
+import { useTheme } from '@mui/material/styles';
+import { Box, Typography, Avatar } from '@mui/material';
+import { createAnimation, fadeInUp, float } from '../../styles/animations';
+import { gradientText } from '../../styles/commonStyles';
+import { BaseComponentProps } from '../../types';
 
-export default function AnimatedHero() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+export default function AnimatedHero({ }: BaseComponentProps) {
+  const theme = useTheme();
 
   return (
     <Box
       sx={{
         textAlign: "center",
-        py: { xs: 6, sm: 8, md: 10 }, // Increased padding for more height
-        mb: { xs: 4, md: 5 }, // Increased margin
+        py: { xs: 6, sm: 8, md: 10 },
+        mb: { xs: 4, md: 5 },
         position: "relative",
-        width: "100%", // Full width
+        width: "100%",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: { xs: "300px", sm: "400px", md: "500px" }, // Taller container
+        minHeight: { xs: "300px", sm: "400px", md: "500px" },
         backgroundColor: "background.paper",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
       }}
@@ -35,38 +34,31 @@ export default function AnimatedHero() {
           width: "100%",
           height: "100%",
           zIndex: 1,
-          background: "linear-gradient(135deg, rgba(123, 63, 228, 0.3), rgba(206, 147, 216, 0.3))", // Subtle purple overlay
+          background: "linear-gradient(135deg, rgba(123, 63, 228, 0.3), rgba(206, 147, 216, 0.3))",
         }}
       />
       <Avatar
         src="profile.jpg"
         alt="Kusal Madura Yapa"
         sx={{
-          width: { xs: 80, sm: 90, md: 100 }, // Smaller avatar
+          width: { xs: 80, sm: 90, md: 100 },
           height: { xs: 80, sm: 90, md: 100 },
-          mb: 2, // Tighter spacing
-          border: "3px solid #bb86fc", // Thinner border, theme's primary.light
-          boxShadow: "0 2px 4px rgba(98, 0, 234, 0.3)", // Subtler purple shadow
+          mb: 2,
+          border: "3px solid #bb86fc",
+          boxShadow: "0 2px 4px rgba(98, 0, 234, 0.3)",
           zIndex: 2,
-          ...(isMounted && {
-            animation: "float 4s ease-in-out infinite", // Slower, smoother float
-            "@keyframes float": {
-              "0%": { transform: "translateY(0)" },
-              "50%": { transform: "translateY(-4px)" }, // Minimal float
-              "100%": { transform: "translateY(0)" },
-            },
-          }),
+          animation: createAnimation(float, '4s', 'ease-in-out', '0s', 'infinite'),
         }}
       />
       <Typography
         variant="h2"
         sx={{
-          color: "text.primary", // White for readability
+          color: "text.primary",
           zIndex: 2,
-          fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" }, // Smaller, responsive
+          fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
           fontWeight: "bold",
           position: "relative",
-          pb: 1, // Space for underline
+          pb: 1,
           "&:after": {
             content: '""',
             position: "absolute",
@@ -75,15 +67,9 @@ export default function AnimatedHero() {
             transform: "translateX(-50%)",
             width: "50%",
             height: "3px",
-            background: "linear-gradient(45deg, #7b3fe4 30%, #ce93d8 90%)", // Purple underline
+            backgroundImage: gradientText(theme)?.background || 'linear-gradient(90deg, #bb86fc 0%, #6200ee 100%)',
           },
-          ...(isMounted && {
-            animation: "fadeInUp 0.8s ease-out", // Faster, subtler fade
-            "@keyframes fadeInUp": {
-              from: { opacity: 0, transform: "translateY(10px)" }, // Minimal translate
-              to: { opacity: 1, transform: "translateY(0)" },
-            },
-          }),
+          animation: createAnimation(fadeInUp, '0.8s', 'ease-out'),
         }}
       >
         Kusal Madura Yapa
@@ -91,14 +77,12 @@ export default function AnimatedHero() {
       <Typography
         variant="subtitle1"
         sx={{
-          maxWidth: { xs: "90%", sm: "600px" }, // Tighter max-width
+          maxWidth: { xs: "90%", sm: "600px" },
           px: { xs: 2, sm: 3 },
-          color: "text.secondary", // #b0b0b0 for contrast
+          color: "text.secondary",
           zIndex: 2,
-          fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" }, // Smaller, readable
-          ...(isMounted && {
-            animation: "fadeInUp 1s ease-out 0.2s backwards", // Slightly faster
-          }),
+          fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+          animation: createAnimation(fadeInUp, '1s', 'ease-out', '0.2s', 'backwards'),
         }}
       >
         Software Engineering Undergraduate | Innovator in AI & Full-Stack Development

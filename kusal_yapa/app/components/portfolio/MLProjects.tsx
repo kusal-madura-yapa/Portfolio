@@ -1,10 +1,9 @@
 'use client';
 import { useTheme } from '@mui/material/styles';
-import { Typography, Box, Divider, Grid, Paper } from '@mui/material';
+import { Typography, Box, Divider } from '@mui/material';
 import { ProjectCard } from './ProjectCard';
-import CodeIcon from '@mui/icons-material/Code';
-import PsychologyIcon from '@mui/icons-material/Psychology';
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import { sectionTitleStyle, flexContainer } from '../../styles/commonStyles';
+import { createAnimation, fadeInUp } from '../../styles/animations';
 
 const MLProjects = () => {
   const theme = useTheme();
@@ -15,27 +14,15 @@ const MLProjects = () => {
         variant="h3"
         gutterBottom
         sx={{
-          animation: 'fadeInUp 1s ease-in-out',
-          mb: 2,
-          textAlign: 'center',
-          background: `linear-gradient(45deg, ${
-            theme.palette.mode === 'dark' ? '#00bcd4' : '#0288d1'
-          } 30%, ${
-            theme.palette.mode === 'dark' ? '#4dd0e1' : '#4fc3f7'
-          } 90%)`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          fontSize: { xs: '2rem', sm: '2.5rem' },
+          ...sectionTitleStyle(theme),
+          animation: createAnimation(fadeInUp, '1s'),
         }}
       >
         AI/ML Projects
       </Typography>
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: 2,
+          ...flexContainer.row,
           paddingBottom: '16px',
         }}
       >
@@ -46,11 +33,7 @@ const MLProjects = () => {
             p: { xs: 2, sm: 3 },
             maxWidth: { xs: '100%', sm: '400px' },
             minWidth: { xs: '300px', sm: '400px' },
-            backgroundColor: 'background.paper',
-            color: 'text.primary',
-            borderRadius: '12px',
-            animation: 'fadeInUp 1s ease-in-out',
-            animationDelay: '0s',
+            animation: createAnimation(fadeInUp, '1s'),
             flexShrink: 0,
           }}
         />
@@ -61,11 +44,7 @@ const MLProjects = () => {
             p: { xs: 2, sm: 3 },
             maxWidth: { xs: '100%', sm: '400px' },
             minWidth: { xs: '300px', sm: '400px' },
-            backgroundColor: 'background.paper',
-            color: 'text.primary',
-            borderRadius: '12px',
-            animation: 'fadeInUp 1s ease-in-out',
-            animationDelay: '0.2s',
+            animation: createAnimation(fadeInUp, '1s', 'ease-in-out', '0.2s'),
             flexShrink: 0,
           }}
         />
@@ -76,11 +55,7 @@ const MLProjects = () => {
             p: { xs: 2, sm: 3 },
             maxWidth: { xs: '100%', sm: '400px' },
             minWidth: { xs: '300px', sm: '400px' },
-            backgroundColor: 'background.paper',
-            color: 'text.primary',
-            borderRadius: '12px',
-            animation: 'fadeInUp 1s ease-in-out',
-            animationDelay: '0.4s',
+            animation: createAnimation(fadeInUp, '1s', 'ease-in-out', '0.1s'),
             flexShrink: 0,
           }}
         />

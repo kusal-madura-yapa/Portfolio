@@ -1,19 +1,20 @@
 'use client';
-import { Box, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { Typography, Box } from '@mui/material';
 import { ProjectCard } from '../portfolio/ProjectCard';
+import { sectionTitleStyle, flexContainer } from '../../styles/commonStyles';
+import { createAnimation, fadeInUp } from '../../styles/animations';
+import { SectionProps } from '../../types';
 
-export default function EducationSection() {
+export default function EducationSection({ }: SectionProps) {
   return (
     <Box id="education" sx={{ mb: { xs: 4, md: 6 }, scrollMarginTop: '120px' }}>
       <Typography
         variant="h4"
         gutterBottom
         sx={{
-          mb: 4,
-          textAlign: 'center',
-          background: 'linear-gradient(45deg, #7b3fe4 30%, #ce93d8 90%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
+          ...sectionTitleStyle(useTheme()),
+          animation: createAnimation(fadeInUp, '1s'),
         }}
       >
         Education
@@ -21,12 +22,9 @@ export default function EducationSection() {
 
       <Box
         sx={{
-          display: 'flex',
+          ...flexContainer.row,
           flexDirection: { xs: 'column', md: 'row' },
-          flexWrap: 'wrap',
-          justifyContent: 'center',
           alignItems: 'stretch',
-          gap: { xs: 2, md: 3 },
         }}
       >
         <ProjectCard
@@ -53,9 +51,7 @@ export default function EducationSection() {
             p: { xs: 2.5, sm: 3.5 },
             flex: '1 1 300px',
             minWidth: '280px',
-            backgroundColor: 'background.paper',
-            color: 'text.primary',
-            borderRadius: '8px',
+            animation: createAnimation(fadeInUp, '1s', 'ease-in-out', '0.1s'),
           }}
         />
         <ProjectCard
@@ -66,9 +62,7 @@ export default function EducationSection() {
             p: { xs: 2.5, sm: 3.5 },
             flex: '1 1 300px',
             minWidth: '280px',
-            backgroundColor: 'background.paper',
-            color: 'text.primary',
-            borderRadius: '8px',
+            animation: createAnimation(fadeInUp, '1s', 'ease-in-out', '0.2s'),
           }}
         />
         <ProjectCard
@@ -79,9 +73,7 @@ export default function EducationSection() {
             p: { xs: 2.5, sm: 3.5 },
             flex: '1 1 300px',
             minWidth: '280px',
-            backgroundColor: 'background.paper',
-            color: 'text.primary',
-            borderRadius: '8px',
+            animation: createAnimation(fadeInUp, '1s', 'ease-in-out', '0.3s'),
           }}
         />
       </Box>

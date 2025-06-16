@@ -2,6 +2,8 @@
 import { useTheme } from '@mui/material/styles';
 import { Typography, Box, Divider } from '@mui/material';
 import { ProjectCard } from './ProjectCard';
+import { sectionTitleStyle, flexContainer } from '../../styles/commonStyles';
+import { createAnimation, fadeInUp } from '../../styles/animations';
 import { useEffect } from 'react';
 
 const AWSProjects = () => {
@@ -19,25 +21,15 @@ const AWSProjects = () => {
         variant="h3"
         gutterBottom
         sx={{
-          animation: 'fadeInUp 1s ease-in-out',
-          mb: 2,
-          textAlign: 'center',
-          background: `linear-gradient(45deg, ${
-            theme.palette.mode === 'dark' ? '#00bcd4' : '#0288d1'
-          } 30%, ${theme.palette.mode === 'dark' ? '#4dd0e1' : '#4fc3f7'} 90%)`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          fontSize: { xs: '2rem', sm: '2.5rem' },
+          ...sectionTitleStyle(theme),
+          animation: createAnimation(fadeInUp, '1s'),
         }}
       >
         AWS Projects
       </Typography>
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap', // Allows cards to wrap if they exceed container width
-          justifyContent: 'center',
-          gap: 2,
+          ...flexContainer.row,
           paddingBottom: '16px',
         }}
       >
@@ -48,10 +40,7 @@ const AWSProjects = () => {
             p: { xs: 2, sm: 3 },
             maxWidth: { xs: '100%', sm: '400px' },
             minWidth: { xs: '300px', sm: '400px' },
-            backgroundColor: 'background.paper',
-            color: 'text.primary',
-            borderRadius: '12px',
-            animation: 'fadeInUp 1s ease-in-out',
+            animation: createAnimation(fadeInUp, '1s', 'ease-in-out', '0.1s'),
             flexShrink: 0,
           }}
         />
@@ -62,10 +51,7 @@ const AWSProjects = () => {
             p: { xs: 2, sm: 3 },
             maxWidth: { xs: '100%', sm: '400px' },
             minWidth: { xs: '300px', sm: '400px' },
-            backgroundColor: 'background.paper',
-            color: 'text.primary',
-            borderRadius: '12px',
-            animation: 'fadeInUp 1s ease-in-out',
+            animation: createAnimation(fadeInUp, '1s', 'ease-in-out', '0.2s'),
             flexShrink: 0,
           }}
         />
@@ -76,10 +62,7 @@ const AWSProjects = () => {
             p: { xs: 2, sm: 3 },
             maxWidth: { xs: '100%', sm: '400px' },
             minWidth: { xs: '300px', sm: '400px' },
-            backgroundColor: 'background.paper',
-            color: 'text.primary',
-            borderRadius: '12px',
-            animation: 'fadeInUp 1s ease-in-out',
+            animation: createAnimation(fadeInUp, '1s', 'ease-in-out', '0.3s'),
             flexShrink: 0,
           }}
         />

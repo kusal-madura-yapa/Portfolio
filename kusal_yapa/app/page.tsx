@@ -176,8 +176,6 @@ export default function Page() {
     <ThemeProvider theme={currentTheme}>
       <Header />
       
-      
-     
       <Container
         maxWidth={false}
         disableGutters
@@ -186,8 +184,8 @@ export default function Page() {
           px: { xs: 2, sm: 3, md: 4 },
           backgroundColor: 'background.default',
           minHeight: '100vh',
-          transition: 'background-color 0.3s ease', // Smooth theme transition
-          overflowX: 'hidden', // Prevent horizontal scrolling
+          transition: 'background-color 0.3s ease',
+          overflowX: 'hidden',
         }}
       >
         {/* Theme Toggle Button with Animation */}
@@ -197,7 +195,7 @@ export default function Page() {
             top: 16,
             right: 16,
             '&:hover': {
-              transform: 'rotate(15deg)', // Rotate on hover
+              transform: 'rotate(15deg)',
             },
             transition: 'transform 0.2s ease',
           }}
@@ -208,11 +206,9 @@ export default function Page() {
         </Box>
 
         {/* Animated Hero with Fade-In */}
-        {isMounted && (
-          <Box className="fadeInUp">
-            <AnimatedHero />
-          </Box>
-        )}
+        <Box className="fadeInUp">
+          <AnimatedHero />
+        </Box>
 
         {/* About Section */}
         <Box id="about" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
@@ -330,7 +326,7 @@ export default function Page() {
         </Box>
 
         {/* Education Section */}
-        <EducationSection />
+        <EducationSection title={''} />
 
         {/* Experience Section */}
         <Box id="experience" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
@@ -479,7 +475,7 @@ export default function Page() {
 
        
       </Container>
-      <Footer themeMode={'light'} />
+      <Footer themeMode={themeMode as 'light' | 'dark'} />
     </ThemeProvider>
   );
 }

@@ -1,17 +1,20 @@
 "use client";
 import { Card, CardContent, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
-import { Box, SxProps, Theme } from "@mui/system";
+import { Box } from "@mui/system";
 import CircleIcon from "@mui/icons-material/Circle";
-
-interface ProjectCardProps {
-  title?: string;
-  description?: string;
-  date?: string;
-  sx?: SxProps<Theme>;
-}
+import { ProjectCardProps, ProcessedDescription } from "../../types";
+import { cardBaseStyle, cardHoverEffect, gradientText } from "../../styles/commonStyles";
+import { useTheme } from "@mui/material/styles";
 
 export function ProjectCard({ title, description, date, sx }: ProjectCardProps) {
-  const processDescription = (desc?: string) => {
+  const theme = useTheme();
+  
+  /**
+   * Processes the description text to determine if it should be rendered as a paragraph or a list
+   * @param desc The description text to process
+   * @returns An object with the processed description data
+   */
+  const processDescription = (desc?: string): ProcessedDescription => {
     if (!desc) return { isParagraph: true, content: "" };
 
     const lines = desc.split("\n").filter((line) => line.trim());
@@ -31,15 +34,8 @@ export function ProjectCard({ title, description, date, sx }: ProjectCardProps) 
   return (
     <Card
       sx={{
-        backgroundColor: "background.paper", // #1e1e1e
-        borderRadius: "12px", // Slightly larger for modern look
-        border: "1px solid #333333", // Match theme's border
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
-        "&:hover": {
-          transform: "scale(1.02)", // Subtle scale
-          boxShadow: "0 6px 12px rgba(98, 0, 234, 0.2)", // Purple shadow
-          borderColor: "#7b3fe4", // Purple border on hover
-        },
+        ...cardBaseStyle(theme),
+        ...cardHoverEffect(theme),
         ...sx,
       }}
     >
@@ -49,9 +45,7 @@ export function ProjectCard({ title, description, date, sx }: ProjectCardProps) 
             variant="h6"
             gutterBottom
             sx={{
-              background: "linear-gradient(45deg, #7b3fe4 30%, #ce93d8 90%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
+              ...gradientText(theme),
               fontWeight: "bold",
             }}
           >
