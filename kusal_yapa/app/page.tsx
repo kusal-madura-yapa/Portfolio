@@ -159,7 +159,7 @@ const lightTheme = createTheme({
 export default function Page() {
   const [isMounted, setIsMounted] = useState(false);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const [themeMode, setThemeMode] = useState(prefersDarkMode ? 'dark' : 'light');
+  const [themeMode, setThemeMode] = useState<"light" | "dark">(prefersDarkMode ? 'dark' : 'light');
 
   useEffect(() => {
     setIsMounted(true);
@@ -176,8 +176,6 @@ export default function Page() {
     <ThemeProvider theme={currentTheme}>
       <Header />
       
-      
-     
       <Container
         maxWidth={false}
         disableGutters
@@ -186,8 +184,8 @@ export default function Page() {
           px: { xs: 2, sm: 3, md: 4 },
           backgroundColor: 'background.default',
           minHeight: '100vh',
-          transition: 'background-color 0.3s ease', // Smooth theme transition
-          overflowX: 'hidden', // Prevent horizontal scrolling
+          transition: 'background-color 0.3s ease',
+          overflowX: 'hidden',
         }}
       >
         {/* Theme Toggle Button with Animation */}
@@ -197,7 +195,7 @@ export default function Page() {
             top: 16,
             right: 16,
             '&:hover': {
-              transform: 'rotate(15deg)', // Rotate on hover
+              transform: 'rotate(15deg)',
             },
             transition: 'transform 0.2s ease',
           }}
@@ -208,11 +206,9 @@ export default function Page() {
         </Box>
 
         {/* Animated Hero with Fade-In */}
-        {isMounted && (
-          <Box className="fadeInUp">
-            <AnimatedHero />
-          </Box>
-        )}
+        <Box className="fadeInUp">
+          <AnimatedHero />
+        </Box>
 
         {/* About Section */}
         <Box id="about" sx={{ mb: { xs: 3, md: 4 }, scrollMarginTop: '80px' }}>
@@ -234,10 +230,10 @@ export default function Page() {
             About
           </Typography>
           <ProjectCard
-            description="Software Engineering student at the University of Westminster, skilled in full-stack development and AI. Led an adaptive gamification platform using Deep Q-Networks and contributed to the NBQSA Merit Award-winning OPTIMAXER AI (2023). Passionate about agile development and innovative solutions."
+            description="Newly graduated BEng (Hons) Software Engineering professional from the University of Westminster, with a passion for full-stack development, AI and machine learning. Skilled in reinforcement learning and scalable web applications, I contributed significantly to the NBQSA Merit Award-winning OPTIMAXER AI project (2023), leading the development of an adaptive gamification platform using Deep Q-Networks (DQN) to personalize learning. With hands-on experience in agile environments, I am eager to apply my expertise to solve challenges and deliver innovative, impactful AI/ML solutions. and be ablity to change with new technologies withing each and ever change required."
             sx={{
               p: { xs: 2, sm: 3 },
-              maxWidth: { xs: '100%', sm: '600px' },
+              maxWidth: { xs: '100%', sm: '80%' },
               mx: 'auto',
               backgroundColor: 'background.paper',
               color: 'text.primary',
@@ -329,6 +325,7 @@ export default function Page() {
           <Divider sx={{ my: 2 }} />
         </Box>
 
+        
         {/* Education Section */}
         <EducationSection />
 
@@ -391,7 +388,6 @@ export default function Page() {
               fontSize: { xs: '2rem', sm: '2.5rem' },
             }}
           >
-            Projects
           </Typography>
           
           {/* ML Projects Section */}
@@ -436,12 +432,14 @@ export default function Page() {
             <ProjectCard
               title="Achievements"
               description={
-                "2023\n" +
-                "- NBQSA Merit for OPTIMAXER AI\n" +
-                "2021-2022\n" +
-                "- 1st Runner Up, OpenHack 2.0\n" +
-                "- Finalist, RevolUX 2.0\n" +
-                "- IEEEXtreme 16.0\n" +
+                "Certificates \n" +
+                "AWS Educate: Introduction to Generative AI\n" +
+                "AWS Educate: Machine Learning Foundations\n" +
+                "AWS Educate: Introduction to Cloud 101\n" +
+                "- NBQSA Merit for OPTIMAXER AI  - 2023-2024 \n" +
+                "- 1st Runner Up, OpenHack 2.0 - 2021-2022 \n" +
+                "- Finalist, RevolUX 2.0 - 2021-2022\n" +
+                "- IEEEXtreme 16.0 - 2021-2022 \n" +
                 "- Hacktoberfest 2022"
               }
               sx={{
@@ -457,10 +455,11 @@ export default function Page() {
             <ProjectCard
               title="Volunteer Work"
               description={
-                "2023-2024\n" +
-                "- Music Innovative Member, Xternship Program (IIT)\n" +
-                "2022-2023\n" +
-                "- STEM UP Foundation Supporter"
+                "University and Corporate\n" +
+                "- Music Innovative Member - 2023-2024 \n" +
+                "- Volunteer, Code for Good (Conduct 3 weeks Web Development for FYP BIS student in IIT) - 2023-2024 \n" +
+                "- STEM UP Foundation Supporter - 2022-2023 \n" +
+                "- Member of IEEE \n"
               }
               sx={{
                 p: { xs: 2, sm: 3 },
@@ -479,7 +478,7 @@ export default function Page() {
 
        
       </Container>
-      <Footer themeMode={'light'} />
+      <Footer themeMode={themeMode} />
     </ThemeProvider>
   );
 }

@@ -11,7 +11,7 @@ export default function EducationSection() {
         sx={{
           mb: 4,
           textAlign: 'center',
-          background: 'linear-gradient(45deg, #7b3fe4 30%, #ce93d8 90%)',
+          background: 'linear-gradient(45deg,rgb(63, 220, 228) 30%, #ce93d8 90%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
         }}
