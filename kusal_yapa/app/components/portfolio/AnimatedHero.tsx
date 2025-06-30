@@ -39,7 +39,7 @@ export default function AnimatedHero() {
         }}
       />
       <Avatar
-        src="profile.jpg"
+        src="profile.png"
         alt="Kusal Madura Yapa"
         sx={{
           width: { xs: 80, sm: 90, md: 100 }, // Smaller avatar
