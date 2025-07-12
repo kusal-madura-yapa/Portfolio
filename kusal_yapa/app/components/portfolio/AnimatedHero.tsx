@@ -101,7 +101,7 @@ export default function AnimatedHero() {
           }),
         }}
       >
-        Software Engineering Fresh Graduate | Innovator in AI & Full-Stack Development
+        Software Engineering undergraduate | Innovator in AI & Full-Stack Development
       </Typography>
     </Box>
   );
