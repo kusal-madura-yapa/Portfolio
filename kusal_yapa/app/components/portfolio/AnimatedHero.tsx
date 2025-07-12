@@ -39,7 +39,7 @@ export default function AnimatedHero() {
         }}
       />
       <Avatar
-        src="profile.jpg"
+        src="profile.png"
         alt="Kusal Madura Yapa"
         sx={{
           width: { xs: 80, sm: 90, md: 100 }, // Smaller avatar
@@ -101,7 +101,7 @@ export default function AnimatedHero() {
           }),
         }}
       >
-        Software Engineering Fresh Graduate | Innovator in AI & Full-Stack Development
+        Software Engineering undergraduate | Innovator in AI & Full-Stack Development
       </Typography>
     </Box>
   );

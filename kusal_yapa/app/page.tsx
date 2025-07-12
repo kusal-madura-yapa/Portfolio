@@ -230,7 +230,7 @@ export default function Page() {
             About
           </Typography>
           <ProjectCard
-            description="Newly graduated BEng (Hons) Software Engineering professional from the University of Westminster, with a passion for full-stack development, AI and machine learning. Skilled in reinforcement learning and scalable web applications, I contributed significantly to the NBQSA Merit Award-winning OPTIMAXER AI project (2023), leading the development of an adaptive gamification platform using Deep Q-Networks (DQN) to personalize learning. With hands-on experience in agile environments, I am eager to apply my expertise to solve challenges and deliver innovative, impactful AI/ML solutions. and be ablity to change with new technologies withing each and ever change required."
+            description="Undergraduated BEng (Hons) Software Engineering professional from the University of Westminster, with a passion for full-stack development, AI and machine learning. Skilled in reinforcement learning and scalable web applications, I contributed significantly to the NBQSA Merit Award-winning OPTIMAXER AI project (2023), leading the development of an adaptive gamification platform using Deep Q-Networks (DQN) to personalize learning. With hands-on experience in agile environments, I am eager to apply my expertise to solve challenges and deliver innovative, impactful AI/ML solutions. and be ablity to change with new technologies withing each and ever change required."
             sx={{
               p: { xs: 2, sm: 3 },
               maxWidth: { xs: '100%', sm: '80%' },
@@ -278,7 +278,7 @@ export default function Page() {
               'Mobile App Dev',
               'Web Dev',
               'AI Integration',
-              'Agile',
+              '.NET',
               'Version Control',
               'Time Management',
               'Teamwork',
@@ -291,7 +291,7 @@ export default function Page() {
               'JavaScript',
               'Next.js',
               'Nest.js',
-              'Flask',
+              'Angular.js',
               'iOS (SwiftUI)',
               'Android',
               'AWS',
